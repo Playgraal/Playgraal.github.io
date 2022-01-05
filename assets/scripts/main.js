@@ -13,11 +13,11 @@ setInterval(fetchContractData(), 30000);
 async function login() {
   await Moralis.authenticate()
     .then(async (user) => {
-      currentUser = user;
-      fetchContractData();
+        currentUser = user;
+        await fetchContractData();
     })
     .catch((error) => {
-      console.log(error);
+        console.log(error);
     });
 }
 
