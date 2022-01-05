@@ -1,24 +1,25 @@
 :root {
 	--white: #fff;
-    --default: #eee;
-    --default-hover: #bbb;
+	--default: #eee;
+	--default-hover: #bbb;
 	--default-opacity: #eee5;
-    --primary: #1586B3;
-    --primary-hover: #12BCFF;
-    --danger: #ff2c56;
-    --danger-hover: #B30C2E;
-    --black: #000;
-    --black-hover: #111;
-    --black-normal: #555;
+	--primary: #1586B3;
+	--primary-hover: #12BCFF;
+	--danger: #ff2c56;
+	--danger-hover: #B30C2E;
+	--black: #000;
+	--black-hover: #111;
+	--black-normal: #555;
 	--black-opacity: #000a;
-    --box-shadow: 0px 4px 6px #0005;
-    --animation-fast: 0.8s;
-    --font-family: 'Arial';
-    --font-family-bold: 'Arial Bold';
-    --font-family-bold-italic: 'Arial BoldItalic';
-    --font-family-black: 'Arial Black';
-    --font-family-black-italic: 'Arial BlackItalic';
-    --animation-duration: 0.2s;
+	--box-shadow: 0px 4px 6px #0005;
+	--animation-fast: 0.8s;
+	--animate-duration: 400ms;
+	--font-family: 'Arial';
+	--font-family-bold: 'Arial Bold';
+	--font-family-bold-italic: 'Arial BoldItalic';
+	--font-family-black: 'Arial Black';
+	--font-family-black-italic: 'Arial BlackItalic';
+	--animation-duration: 0.2s;
 	--transition: 2s;
 	--input-border: 1px solid #ced4da;
 	--input-border-radius: .25rem;
@@ -52,6 +53,10 @@ b, strong{
 .main-nav {
 	padding: 15px 20px;
 	background-color: var(--black-opacity);
+	display: flex;
+	justify-content: space-between;
+	position: sticky;
+	top: 0;
 }
 .main-nav ul {
 	list-style-type: none;
@@ -74,6 +79,16 @@ b, strong{
 	font-family: var(--font-family-black);
 	font-size: 32px;
 	margin: 0;
+}
+.main-nav ul li a {
+	color: var(--white);
+	font-family: var(--font-family-black);
+	font-size: 14px;
+	text-decoration: none;
+}
+
+.main-nav ul li a:hover {
+	text-decoration: underline;
 }
 @media (max-width: 576px) {
 	.main-nav ul li img{
@@ -107,6 +122,17 @@ b, strong{
 	.video {
 		height: 320px;
 	}
+}
+
+/** Overlay */
+.mask-overlay {
+	position: fixed;
+	inset: 0;
+	z-index: 999;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0,0,0,0.9);
 }
 
 /** Box */
@@ -157,7 +183,7 @@ b, strong{
 }
 @media (min-width: 768px) {
 	.container {
-	  max-width: 720px;
+	  max-width: 980px;
 	}
 }
 

@@ -17,34 +17,48 @@ async function login() {
       fetchContractData();
     })
     .catch((error) => {
-      console(error);
+      console.log(error);
     });
 }
 
 async function fetchContractData() {
     if (currentUser) {
-      await mintpass_totalSupply();
-      await mintpass_price();
-      await mintpass_remainingTokens();
+        await mintpass_totalSupply();
+        await mintpass_price();
+        await mintpass_remainingTokens();
+        await mintpass_maxAmountPerAddress();
+        await mintpass_balanceOf();
       
-      if (web3Contract) {
-      	document.getElementById("contractInfos").style.display = "block";
-        document.getElementById("submit_mint").style.display = "inline-block";
-        document.getElementById("login").style.display = "none";
-      }
+        if (web3Contract) {
+            document.getElementById("login").style.display = "none";
+
+            if (remainingTokens === 0) {
+                document.getElementById("submit_mint").style.display = "none";
+                document.getElementById("limitMax").style.display = "none";
+                document.getElementById("soldOut").style.display = "inline-block";
+            }
+            else if (balanceOf === maxPerWallet) {
+                document.getElementById("submit_mint").style.display = "none";
+                document.getElementById("soldOut").style.display = "none";
+                document.getElementById("limitMax").style.display = "inline-block";
+            }
+        }
 	} else {
-      document.getElementById("contractInfos").style.display = "none";
-      document.getElementById("submit_mint").style.display = "none";
-      document.getElementById("login").style.display = "inline-block";
+        document.getElementById("contractInfos").style.display = "none";
     }
 }
 
 async function initializeApp() {
 	currentUser = Moralis.User.current();
   	if (!currentUser) {
-    	login();
+    	await login();
     } else {
-      fetchContractData();
+        await fetchContractData();
+    }
+
+    if (web3Contract) {
+        const mask = document.getElementById('mask-overlay')
+        mask.remove();
     }
 }
 
