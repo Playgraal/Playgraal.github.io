@@ -100,7 +100,6 @@ b, strong{
 	width: 100%;
 	display: flex;
 	justify-content: stretch;
-	background-color: var(--black);
 	height: 480px;
 }
 
