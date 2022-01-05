@@ -88,6 +88,7 @@ async function mintpass_maxAmountPerAddress() {
         } catch (error) {
             console.log(error);
         }
+    }
 }
 
 /*** CORE FUNCTIONS ***/
