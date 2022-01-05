@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSO</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/init-font.css">
+
+</head>
+<body>
+    <div class="main-container">
+        <nav class="main-nav">
+            <ul>
+                <li>
+                    <img src="assets/img/logo.png" />
+                </li>
+                <li>
+                    <h1>GRAB YOUR MSO MINT PASS!</h1>
+                </li>
+            </ul>
+        </nav>
+        <div class="video">
+            <video width="100%" height=100%" loop muted autoplay>
+                <source src="assets/video/main-video.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="container">
+            <div id="contractInfos" class="box m-auto" style="display:none">
+                <h1 class="text-white text-center text-bold-italic"><span id="mintedTokenCounter">1 540</span> on <span id="totalSupply">5 000</span> MINTPASS LEFT</h1>
+            </div>
+
+            <div class="box box-white text-center mt-30">
+                <img class="card-img-top" src="https://ipfs.moralis.io:2053/ipfs/QmRDD6GBs3gzwduN2hh4QDH3W85j1Y9yxz2f3Fs23TEasQ/images/0000000000000000000000000000000000000000000000000000000000000000.png" alt="Mintpass image">
+            </div>
+
+            <div class="box text-center mt-30">
+                <button id="submit_mint" class="btn btn-black" style="display:none">BUY MY MSO MINTPASS</button>
+                <button id="login" class="btn btn-black">Login with Metamask</button>
+            </div>
+
+            <div class="box box-black box-description mt-30">
+                <p>
+                    By purchasing one of our early mintpasses, you become part of our founding community, helping the project come to fruition, whilst securing your spots on all our upcoming drops's Greenlists.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="./assets/scripts/mintpass.js"></script>
+    <script type="text/javascript" src="./assets/scripts/main.js"></script>
+    <script type="text/javascript" src="./assets/scripts/abi.js"></script>
+
+</body>
+</html>

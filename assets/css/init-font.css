@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'Arial';
+    src: url('../font/Arial-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Arial Bold';
+    src: url('../font/Arial-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Arial Black';
+    src: url('../font/Arial-Black.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Arial BlackItalic';
+    src: url('../font/Arial-BlackItalic.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Arial Italic';
+    src: url('../font/Arial-Italic.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Arial BoldItalic';
+    src: url('../font/Arial-BoldItalic.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Arial Medium';
+    src: url('../font/Arial-Medium.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Arial Light';
+    src: url('../font/Arial-Light.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Arial LightItalic';
+    src: url('../font/Arial-LightItalic.ttf') format('truetype');
+}
