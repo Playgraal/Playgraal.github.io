@@ -24,6 +24,7 @@ async function mintpass_totalSupply() {
         try {
             contract.methods.totalSupply().call()
                 .then((res) => {
+                    console.log('totalSupply: ', res);
                     document.getElementById("totalSupply").textContent = res;
                 });
         } catch (error) {
@@ -38,6 +39,7 @@ async function mintpass_mintedTokenCounter() {
         try {
           contract.methods.mintedTokenCounter().call()
               .then((res) => {
+                  console.log('mintedTokenCounter: ', res);
                   document.getElementById("mintedTokenCounter").textContent = res;
               });
         } catch (error) {
@@ -51,7 +53,8 @@ async function mintpass_remainingTokens() {
     if (contract !== null) {
         try {
           contract.methods.remainingTokens().call()
-              .then( (res) => {
+              .then((res) => {
+                  console.log('mintedTokenCounter: ', res);
                   document.getElementById("mintedTokenCounter").textContent = res;
               });
         } catch (error) {
