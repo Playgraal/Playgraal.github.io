@@ -15,6 +15,11 @@ async function login() {
     .then(async (user) => {
         currentUser = user;
         await fetchContractData();
+
+        if (web3Contract) {
+            const mask = document.getElementById('mask-overlay')
+            mask.remove();
+        }
     })
     .catch((error) => {
         console.log(error);
