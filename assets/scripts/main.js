@@ -30,8 +30,6 @@ async function fetchContractData() {
         await mintpass_balanceOf();
       
         if (web3Contract) {
-            document.getElementById("login").style.display = "none";
-
             if (remainingTokens === 0) {
                 document.getElementById("submit_mint").style.display = "none";
                 document.getElementById("limitMax").style.display = "none";
@@ -43,9 +41,7 @@ async function fetchContractData() {
                 document.getElementById("limitMax").style.display = "inline-block";
             }
         }
-	} else {
-        document.getElementById("contractInfos").style.display = "none";
-    }
+	}
 }
 
 async function initializeApp() {
