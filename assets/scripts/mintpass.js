@@ -44,6 +44,12 @@ async function mintpass_remainingTokens() {
               .then((res) => {
                   remainingTokens = res;
                   document.getElementById("remainingTokens").textContent = remainingTokens;
+
+                  if (remainingTokens === 0) {
+                      document.getElementById("submit_mint").style.display = "none";
+                      document.getElementById("limitMax").style.display = "none";
+                      document.getElementById("soldOut").style.display = "inline-block";
+                  }
               });
         } catch (error) {
             console.log(error);
@@ -72,7 +78,12 @@ async function mintpass_balanceOf() {
     const contract = new web3.eth.Contract(contractAbi, CONTRACT_ADDRESS);
     contract.methods.balanceOf(accounts[0]).call()
         .then((res) => {
-            balanceOf = res
+            balanceOf = res;
+            if (balanceOf === maxPerWallet) {
+                document.getElementById("submit_mint").style.display = "none";
+                document.getElementById("soldOut").style.display = "none";
+                document.getElementById("limitMax").style.display = "inline-block";
+            }
         });
 }
 
@@ -84,6 +95,12 @@ async function mintpass_maxAmountPerAddress() {
                 .then((res) => {
                     maxPerWallet = res;
                     document.getElementById('maxPerWallet').innerHTML = maxPerWallet;
+
+                    if (balanceOf === maxPerWallet) {
+                        document.getElementById("submit_mint").style.display = "none";
+                        document.getElementById("soldOut").style.display = "none";
+                        document.getElementById("limitMax").style.display = "inline-block";
+                    }
                 });
         } catch (error) {
             console.log(error);
