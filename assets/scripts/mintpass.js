@@ -12,50 +12,66 @@ async function mintpassContract() {
       }
       return web3Contract;
     } catch(error) {
-      console.log(error);
-      return null;
+        console.log(error);
+        return null;
     }
 }
 
 /*** UTILITY FUNCTIONS ***/
 async function mintpass_totalSupply() {
     const contract = await mintpassContract();
-  	if (contract !== null) { 
-      contract.methods.totalSupply().call()
-          .then((res) => {
-              document.getElementById("totalSupply").textContent = res;
-          });
+    if (contract !== null) {
+        try {
+            contract.methods.totalSupply().call()
+                .then((res) => {
+                    document.getElementById("totalSupply").textContent = res;
+                });
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 
 async function mintpass_mintedTokenCounter() {
     const contract = await mintpassContract();
-  	if (contract !== null) { 
-      contract.methods.mintedTokenCounter().call()
-          .then((res) => {
-              document.getElementById("mintedTokenCounter").textContent = res;
-          });
+    if (contract !== null) {
+        try {
+          contract.methods.mintedTokenCounter().call()
+              .then((res) => {
+                  document.getElementById("mintedTokenCounter").textContent = res;
+              });
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 
 async function mintpass_remainingTokens() {
 	const contract = await mintpassContract();
-  	if (contract !== null) { 
-      contract.methods.remainingTokens().call()
-          .then( (res) => {
-              document.getElementById("mintedTokenCounter").textContent = res;
-          });
+    if (contract !== null) {
+        try {
+          contract.methods.remainingTokens().call()
+              .then( (res) => {
+                  document.getElementById("mintedTokenCounter").textContent = res;
+              });
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 
 async function mintpass_price() {
     const contract = await mintpassContract();
-  	if (contract !== null) { 
-      contract.methods.price().call()
-          .then((res) => {
-              console.log('price: ', res);
-              currentMintpassPrice = res;
-          });
+    if (contract !== null) {
+        try {
+          contract.methods.price().call()
+              .then((res) => {
+                  console.log('price: ', res);
+                  currentMintpassPrice = res;
+              });
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 
