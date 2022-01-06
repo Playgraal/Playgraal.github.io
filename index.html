@@ -59,21 +59,23 @@
         </div>
 
         <div class="video">
-            <video width="100" height="100" loop muted autoplay>
+            <video width="100%" height="100%" loop muted autoplay>
                 <source src="assets/video/main-video.mp4" type="video/mp4">
             </video>
         </div>
 
         <div class="container">
-            <div id="contractInfos" class="box m-auto" style="display:none">
+            <div class="box m-auto">
                 <h1 class="text-white text-center text-bold-italic"><span id="mintedTokenCounter">1 540</span> on <span id="totalSupply">5 000</span> MINTPASS LEFT</h1>
             </div>
 
-            <div class="box box-white text-center mt-30">
-                <img class="card-img-top" src="https://ipfs.moralis.io:2053/ipfs/QmRDD6GBs3gzwduN2hh4QDH3W85j1Y9yxz2f3Fs23TEasQ/images/0000000000000000000000000000000000000000000000000000000000000000.png" alt="Mintpass image">
+            <div class="text-center" style="height:600px">
+                <iframe id="2b7f40b6-7f4d-47ff-aea0-8d83e7367165" src="https://app.vectary.com/viewer/v1/?model=2b7f40b6-7f4d-47ff-aea0-8d83e7367165&env=modernbuildings" frameborder="0" width="100%" height="100%"></iframe>
             </div>
 
             <div class="box text-center mt-30">
+                <h4 style="margin-bottom: 10px; color: white">Price : <span id="price">0.05 Eth</span></h4>
+                <p style="margin-top: 0;color: white">(max <span id="maxPerWallet">5</span> per wallet)</p>
                 <button id="submit_mint" class="btn btn-black" style="display:none">BUY MY MSO MINTPASS</button>
                 <button id="login" class="btn btn-black">Login with Metamask</button>
             </div>
