@@ -88,28 +88,30 @@ async function mintpass_maxAmountPerAddress() {
 async function mint() {
     currentUser = Moralis.User.current();
     if (!currentUser) {
-        login();
+        await login();
     }
 
-    document.getElementById("submit_mint").disabled = true;
+    if (currentUser) {
+        document.getElementById("submit_mint").disabled = true;
 
-    web3 = await Moralis.enableWeb3();
+        web3 = await Moralis.enableWeb3();
 
-    const accounts = await web3.eth.getAccounts();
-    const contract = new web3.eth.Contract(contractAbi, CONTRACT_ADDRESS);
+        const accounts = await web3.eth.getAccounts();
+        const contract = new web3.eth.Contract(contractAbi, CONTRACT_ADDRESS);
 
-    contract.methods.mint(amount).send({
-        from: accounts[0],
-        value: currentMintpassPrice * amount
-    })
-        .then((res) => {
-            console.log(`mint: ${res}`);
-            document.getElementById("submit_mint").disabled = false;
-            fetchContractData();
-        }).catch((err) => {
-            console.log(err);
-            document.getElementById("submit_mint").disabled = true;
-        });
+        contract.methods.mint(amount).send({
+            from: accounts[0],
+            value: currentMintpassPrice * amount
+        })
+            .then((res) => {
+                console.log(`mint: ${res}`);
+                document.getElementById("submit_mint").disabled = false;
+                fetchContractData();
+            }).catch((err) => {
+                console.log(err);
+                document.getElementById("submit_mint").disabled = true;
+            });
+    }
 }
 
 document.getElementById("submit_mint").onclick = mint;

@@ -40,8 +40,9 @@ async function initializeApp() {
     }
 
     if (web3Contract) {
-        const mask = document.getElementById('mask-overlay')
-        mask.remove();
+        document.getElementById("counter").style.display = "inline-block";
+    } else {
+        document.getElementById("counter").style.display = "none";
     }
 }
 

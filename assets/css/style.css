@@ -32,7 +32,7 @@ body{
 	font-family: var(--font-family);
 	overflow: hidden;
 	overflow-y: auto;
-    background-image: url('../img/body-bg.jpg');
+    background-color: transparent;
 	background-size: cover;
 	background-attachment: fixed;
 	margin: 0;
