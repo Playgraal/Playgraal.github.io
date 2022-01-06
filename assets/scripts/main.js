@@ -41,5 +41,4 @@ async function initializeApp() {
 }
 
 initializeApp();
-document.getElementById("login").onclick = login;
 document.getElementById("counter").style.display = "none";
