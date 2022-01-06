@@ -1,4 +1,4 @@
-(function () {
+(function() {
     const navbarFadeInPosition = 140
     const navbar = document.getElementById('main-nav')
     let timeOut = null

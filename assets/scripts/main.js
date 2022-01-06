@@ -13,40 +13,38 @@ setInterval(fetchContractData(), 30000);
 async function login() {
   await Moralis.authenticate()
     .then(async (user) => {
-        currentUser = user;
-        await fetchContractData();
-
-        if (web3Contract) {
-            const mask = document.getElementById('mask-overlay')
-            mask.remove();
-        }
+      currentUser = user;
+      fetchContractData();
     })
     .catch((error) => {
-        console.log(error);
+      console.log(error);
     });
 }
 
 async function fetchContractData() {
     if (currentUser) {
-        await mintpass_totalSupply();
-        await mintpass_price();
-        await mintpass_remainingTokens();
-        await mintpass_maxAmountPerAddress();
-        await mintpass_balanceOf();
-	}
+      await mintpass_totalSupply();
+      await mintpass_price();
+      await mintpass_remainingTokens();
+      
+      if (web3Contract) {
+      	document.getElementById("contractInfos").style.display = "block";
+        document.getElementById("submit_mint").style.display = "inline-block";
+        document.getElementById("login").style.display = "none";
+      }
+	} else {
+      document.getElementById("contractInfos").style.display = "none";
+      document.getElementById("submit_mint").style.display = "none";
+      document.getElementById("login").style.display = "inline-block";
+    }
 }
 
 async function initializeApp() {
 	currentUser = Moralis.User.current();
   	if (!currentUser) {
-    	await login();
+    	login();
     } else {
-        await fetchContractData();
-    }
-
-    if (web3Contract) {
-        const mask = document.getElementById('mask-overlay')
-        mask.remove();
+      fetchContractData();
     }
 }
 

@@ -1,25 +1,25 @@
 :root {
 	--white: #fff;
-	--default: #eee;
-	--default-hover: #bbb;
+    --default: #eee;
+    --default-hover: #bbb;
 	--default-opacity: #eee5;
-	--primary: #1586B3;
-	--primary-hover: #12BCFF;
-	--danger: #ff2c56;
-	--danger-hover: #B30C2E;
-	--black: #000;
-	--black-hover: #111;
-	--black-normal: #555;
+    --primary: #1586B3;
+    --primary-hover: #12BCFF;
+    --danger: #ff2c56;
+    --danger-hover: #B30C2E;
+    --black: #000;
+    --black-hover: #111;
+    --black-normal: #555;
 	--black-opacity: #000a;
-	--box-shadow: 0px 4px 6px #0005;
-	--animation-fast: 0.8s;
+    --box-shadow: 0px 4px 6px #0005;
+    --animation-fast: 0.8s;
 	--animate-duration: 400ms;
-	--font-family: 'Arial';
-	--font-family-bold: 'Arial Bold';
-	--font-family-bold-italic: 'Arial BoldItalic';
-	--font-family-black: 'Arial Black';
-	--font-family-black-italic: 'Arial BlackItalic';
-	--animation-duration: 0.2s;
+    --font-family: 'Arial';
+    --font-family-bold: 'Arial Bold';
+    --font-family-bold-italic: 'Arial BoldItalic';
+    --font-family-black: 'Arial Black';
+    --font-family-black-italic: 'Arial BlackItalic';
+    --animation-duration: 0.2s;
 	--transition: 2s;
 	--input-border: 1px solid #ced4da;
 	--input-border-radius: .25rem;
@@ -86,7 +86,6 @@ b, strong{
 	font-size: 13px;
 	text-decoration: none;
 }
-
 .main-nav ul li a:hover {
 	color: #D93616;
 	transition: all .08s linear;
@@ -116,6 +115,7 @@ b, strong{
 	width: 100%;
 	display: flex;
 	justify-content: stretch;
+	background-color: var(--black);
 	height: 480px;
 }
 
@@ -133,7 +133,7 @@ b, strong{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: rgba(0,0,0,0.9);
+	background-color: var(--black);
 }
 
 /** Box */
@@ -184,7 +184,7 @@ b, strong{
 }
 @media (min-width: 768px) {
 	.container {
-	  max-width: 980px;
+	  max-width: 720px;
 	}
 }
 
