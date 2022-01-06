@@ -3,6 +3,9 @@ let web3;
 let currentMintpassPrice;
 let amount = 1;
 let web3Contract;
+let maxPerWallet = 5;
+let balanceOf = 0;
+let remainingTokens = 0;
 
 async function mintpassContract() {
   	try {
@@ -56,6 +59,38 @@ async function mintpass_price() {
               console.log('price: ', res);
               currentMintpassPrice = res;
           });
+    }
+}
+
+async function mintpass_balanceOf() {
+    web3 = await Moralis.enableWeb3();
+    const accounts = await web3.eth.getAccounts();
+    const contract = new web3.eth.Contract(contractAbi, CONTRACT_ADDRESS);
+    contract.methods.balanceOf(accounts[0]).call()
+        .then((res) => {
+            balanceOf = res;
+            /*if (balanceOf === maxPerWallet) {
+                document.getElementById("submit_mint").style.display = "none";
+                document.getElementById("soldOut").style.display = "none";
+                document.getElementById("limitMax").style.display = "inline-block";
+            }*/
+        });
+}
+
+async function mintpass_maxAmountPerAddress() {
+    const contract = await mintpassContract();
+    if (contract !== null) {
+        contract.methods.maxAmountPerAddress().call()
+            .then((res) => {
+                maxPerWallet = res;
+                document.getElementById('maxPerWallet').textContent = maxPerWallet;
+
+                /*if (balanceOf === maxPerWallet) {
+                    document.getElementById("submit_mint").style.display = "none";
+                    document.getElementById("soldOut").style.display = "none";
+                    document.getElementById("limitMax").style.display = "inline-block";
+                }*/
+            });
     }
 }
 

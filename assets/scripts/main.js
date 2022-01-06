@@ -14,7 +14,7 @@ async function login() {
   await Moralis.authenticate()
     .then(async (user) => {
       currentUser = user;
-      fetchContractData();
+      await fetchContractData();
     })
     .catch((error) => {
       console.log(error);
@@ -42,9 +42,9 @@ async function fetchContractData() {
 async function initializeApp() {
 	currentUser = Moralis.User.current();
   	if (!currentUser) {
-    	login();
+    	await login();
     } else {
-      fetchContractData();
+        await fetchContractData();
     }
 }
 
