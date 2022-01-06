@@ -7,8 +7,6 @@ const CONTRACT_URL = `https://rinkeby.etherscan.io/address/${CONTRACT_ADDRESS}`;
 
 let currentUser;
 
-setInterval(fetchContractData(), 30000);
-
 /* Authentication code */
 async function login() {
   await Moralis.authenticate()
@@ -23,11 +21,12 @@ async function login() {
 
 async function fetchContractData() {
     if (currentUser) {
-        await mintpass_totalSupply();
-        await mintpass_price();
-        await mintpass_remainingTokens();
-        await mintpass_maxAmountPerAddress();
-        await mintpass_balanceOf();
+        const contract = await mintpassContract();
+        await mintpass_totalSupply(contract);
+        await mintpass_price(contract);
+        await mintpass_remainingTokens(contract);
+        await mintpass_maxAmountPerAddress(contract);
+        await mintpass_balanceOf(contract);
 	}
 }
 

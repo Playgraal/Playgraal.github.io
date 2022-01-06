@@ -22,8 +22,7 @@ async function mintpassContract() {
 }
 
 /*** UTILITY FUNCTIONS ***/
-async function mintpass_totalSupply() {
-    const contract = await mintpassContract();
+async function mintpass_totalSupply(contract) {
   	if (contract !== null) { 
       contract.methods.totalSupply().call()
           .then((res) => {
@@ -32,8 +31,7 @@ async function mintpass_totalSupply() {
     }
 }
 
-async function mintpass_remainingTokens() {
-	const contract = await mintpassContract();
+async function mintpass_remainingTokens(contract) {
   	if (contract !== null) { 
       contract.methods.remainingTokens().call()
           .then((res) => {
@@ -43,8 +41,7 @@ async function mintpass_remainingTokens() {
     }
 }
 
-async function mintpass_price() {
-    const contract = await mintpassContract();
+async function mintpass_price(contract) {
   	if (contract !== null) { 
       contract.methods.price().call()
           .then((res) => {
@@ -53,23 +50,24 @@ async function mintpass_price() {
     }
 }
 
-async function mintpass_balanceOf() {
-    web3 = await Moralis.enableWeb3();
-    const accounts = await web3.eth.getAccounts();
-    const contract = new web3.eth.Contract(contractAbi, CONTRACT_ADDRESS);
-    contract.methods.balanceOf(accounts[0]).call()
-        .then((res) => {
-            balanceOf = res;
-            if (balanceOf === maxPerWallet) {
-                document.getElementById("submit_mint").style.display = "none";
-                document.getElementById("soldOut").style.display = "none";
-                document.getElementById("limitMax").style.display = "inline-block";
-            }
-        });
+async function mintpass_balanceOf(contract) {
+    if (contract !== null) {
+        web3 = await Moralis.enableWeb3();
+        const accounts = await web3.eth.getAccounts();
+        const contract = new web3.eth.Contract(contractAbi, CONTRACT_ADDRESS);
+        contract.methods.balanceOf(accounts[0]).call()
+            .then((res) => {
+                balanceOf = res;
+                if (balanceOf === maxPerWallet) {
+                    document.getElementById("submit_mint").style.display = "none";
+                    document.getElementById("soldOut").style.display = "none";
+                    document.getElementById("limitMax").style.display = "inline-block";
+                }
+            });
+    }
 }
 
-async function mintpass_maxAmountPerAddress() {
-    const contract = await mintpassContract();
+async function mintpass_maxAmountPerAddress(contract) {
     if (contract !== null) {
         contract.methods.maxAmountPerAddress().call()
             .then((res) => {
@@ -95,23 +93,26 @@ async function mint() {
     if (currentUser) {
         document.getElementById("submit_mint").disabled = true;
 
-        web3 = await Moralis.enableWeb3();
+        try {
+            web3 = await Moralis.enableWeb3();
+            const accounts = await web3.eth.getAccounts();
+            const contract = new web3.eth.Contract(contractAbi, CONTRACT_ADDRESS);
 
-        const accounts = await web3.eth.getAccounts();
-        const contract = new web3.eth.Contract(contractAbi, CONTRACT_ADDRESS);
-
-        contract.methods.mint(amount).send({
-            from: accounts[0],
-            value: currentMintpassPrice * amount
-        })
-            .then((res) => {
-                console.log(`mint: ${res}`);
-                document.getElementById("submit_mint").disabled = false;
-                fetchContractData();
-            }).catch((err) => {
-                console.log(err);
-                document.getElementById("submit_mint").disabled = true;
-            });
+            contract.methods.mint(amount).send({
+                from: accounts[0],
+                value: currentMintpassPrice * amount
+            })
+                .then((res) => {
+                    console.log(`mint: ${res}`);
+                    document.getElementById("submit_mint").disabled = false;
+                    fetchContractData();
+                }).catch((err) => {
+                    console.log(err);
+                    document.getElementById("submit_mint").disabled = true;
+                });
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 
