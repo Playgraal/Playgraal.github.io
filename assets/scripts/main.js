@@ -33,18 +33,13 @@ async function fetchContractData() {
 
 async function initializeApp() {
 	currentUser = Moralis.User.current();
-  	if (!currentUser) {
+    if (!currentUser) {
     	await login();
     } else {
         await fetchContractData();
-    }
-
-    if (web3Contract) {
-        document.getElementById("counter").style.display = "inline-block";
-    } else {
-        document.getElementById("counter").style.display = "none";
     }
 }
 
 initializeApp();
 document.getElementById("login").onclick = login;
+document.getElementById("counter").style.display = "none";

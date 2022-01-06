@@ -9,14 +9,15 @@ let remainingTokens = 0;
 
 async function mintpassContract() {
   	try {
-      if (!web3Contract) {
-        web3 = await Moralis.enableWeb3();
-        web3Contract = new web3.eth.Contract(contractAbi, CONTRACT_ADDRESS);
-      }
-      return web3Contract;
+        if (!web3Contract && currentUser) {
+            web3 = await Moralis.enableWeb3();
+            web3Contract = new web3.eth.Contract(contractAbi, CONTRACT_ADDRESS);
+            document.getElementById("counter").style.display = "inline-block";
+        }
+        return web3Contract;
     } catch(error) {
-      console.log(error);
-      return null;
+        console.log(error);
+        return null;
     }
 }
 
