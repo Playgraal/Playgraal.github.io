@@ -112,6 +112,7 @@ async function mint() {
                 });
         } catch (error) {
             console.log(error);
+            document.getElementById("submit_mint").disabled = false;
         }
     }
 }
