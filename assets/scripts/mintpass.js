@@ -31,22 +31,13 @@ async function mintpass_totalSupply() {
     }
 }
 
-async function mintpass_mintedTokenCounter() {
-    const contract = await mintpassContract();
-  	if (contract !== null) { 
-      contract.methods.mintedTokenCounter().call()
-          .then((res) => {
-              document.getElementById("mintedTokenCounter").textContent = res;
-          });
-    }
-}
-
 async function mintpass_remainingTokens() {
 	const contract = await mintpassContract();
   	if (contract !== null) { 
       contract.methods.remainingTokens().call()
-          .then( (res) => {
-              document.getElementById("mintedTokenCounter").textContent = res;
+          .then((res) => {
+              remainingTokens = res;
+              document.getElementById("remainingTokens").textContent = remainingTokens;
           });
     }
 }
@@ -56,7 +47,6 @@ async function mintpass_price() {
   	if (contract !== null) { 
       contract.methods.price().call()
           .then((res) => {
-              console.log('price: ', res);
               currentMintpassPrice = res;
           });
     }
@@ -69,11 +59,11 @@ async function mintpass_balanceOf() {
     contract.methods.balanceOf(accounts[0]).call()
         .then((res) => {
             balanceOf = res;
-            /*if (balanceOf === maxPerWallet) {
+            if (balanceOf === maxPerWallet) {
                 document.getElementById("submit_mint").style.display = "none";
                 document.getElementById("soldOut").style.display = "none";
                 document.getElementById("limitMax").style.display = "inline-block";
-            }*/
+            }
         });
 }
 
@@ -85,11 +75,11 @@ async function mintpass_maxAmountPerAddress() {
                 maxPerWallet = res;
                 document.getElementById('maxPerWallet').textContent = maxPerWallet;
 
-                /*if (balanceOf === maxPerWallet) {
+                if (balanceOf === maxPerWallet) {
                     document.getElementById("submit_mint").style.display = "none";
                     document.getElementById("soldOut").style.display = "none";
                     document.getElementById("limitMax").style.display = "inline-block";
-                }*/
+                }
             });
     }
 }
