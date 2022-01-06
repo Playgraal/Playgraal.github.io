@@ -23,20 +23,12 @@ async function login() {
 
 async function fetchContractData() {
     if (currentUser) {
-      await mintpass_totalSupply();
-      await mintpass_price();
-      await mintpass_remainingTokens();
-      
-      if (web3Contract) {
-      	document.getElementById("contractInfos").style.display = "block";
-        document.getElementById("submit_mint").style.display = "inline-block";
-        document.getElementById("login").style.display = "none";
-      }
-	} else {
-      document.getElementById("contractInfos").style.display = "none";
-      document.getElementById("submit_mint").style.display = "none";
-      document.getElementById("login").style.display = "inline-block";
-    }
+        await mintpass_totalSupply();
+        await mintpass_price();
+        await mintpass_remainingTokens();
+        await mintpass_maxAmountPerAddress();
+        await mintpass_balanceOf();
+	}
 }
 
 async function initializeApp() {
@@ -45,6 +37,11 @@ async function initializeApp() {
     	await login();
     } else {
         await fetchContractData();
+    }
+
+    if (web3Contract) {
+        const mask = document.getElementById('mask-overlay')
+        mask.remove();
     }
 }
 
